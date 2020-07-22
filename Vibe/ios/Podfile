@@ -8,6 +8,7 @@ target 'Vibe' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+
   target 'VibeTests' do
     inherit! :complete
     # Pods for testing
