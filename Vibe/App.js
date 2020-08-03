@@ -15,6 +15,7 @@ import Splash from './pages/auth/Splash'
 import UserHome from './pages/user/Home'
 import Account from './pages/user/Account'
 import SignUp from './pages/auth/SignUp'
+import ConfirmPhone from './pages/auth/ConfirmPhone'
 import Landing from './pages/auth/Landing'
 
 const AuthStack = createStackNavigator();
@@ -69,6 +70,10 @@ function App (props){
                 headerShown:false
               }} />
             <AuthStack.Screen name = 'SignUp' component={SignUp}/>
+            <AuthStack.Screen name = 'ConfirmPhone' component={ConfirmPhone}
+              options={{
+                headerShown:false
+              }}/>
           </AuthStack.Navigator>
         ):(
           <UserTabs.Navigator

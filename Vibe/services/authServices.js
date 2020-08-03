@@ -48,18 +48,17 @@ export const logIn = async (dispatch, email, password, rememberMe) => {
 export const signUp = async (dispatch, name, email, password) => {
     return true
     console.log('signing in')
-    let registered = false
+    let registered = null
     dispatch(setLoading(true))
     await axios.post(SERVER_URL + 'api/v1/register', {
         name: name,
         email: email,
         password: password,
     }).then(res => {
-        registered = true
+        registered = res.data
         dispatch(setError(''))
         dispatch(setLoading(false))
     }).catch(e => {
-        registered = false
         let message = e.response && e.response.data && e.response.data.response_message
         console.log('error message', message)
         dispatch(setError(message || e.message || 'Error registering user'))

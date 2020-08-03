@@ -66,27 +66,22 @@ function SignUp (props) {
   
     const handleSignUp = async () =>{
       if(email != '' && name != '' && password != '' && confirmPassword != '' && password == confirmPassword && validateEmail(email)){
-          console.log('signup called')
-        await signUp(props.dispatch, name, email, password).then(res => {
-            if(!res){
-              props.setError('Server returned error')
-            }
-          }).catch(error => {
-            props.setError(error.message || 'Error logging in')
-          }).catch(e=>{
-            console.log(e.message || 'error logging in')
-          })
+        props.navigation.navigate('ConfirmPhone',{
+          name: name,
+          password: password,
+          email: email
+        })
       }else{
-        if(password == '' || email == '' || password == '' || confirmPassword == ''){
+          if(password == '' || email == '' || password == '' || confirmPassword == ''){
           setNotice('Please fill out all fields')
-        }else if(!validateEmail(email)&&email != ''){
+          }else if(!validateEmail(email)&&email != ''){
           setNotice('Username is not a valid email')
           if(password != confirmPassword){
-            setNotice(notice + ' and passwords do not match')
+              setNotice(notice + ' and passwords do not match')
           }
-        }else{
+          }else{
           setNotice('Passwords do not match')
-        }
+          }
       }
     }
 
