@@ -3,7 +3,8 @@ import {
   SafeAreaView,
   Text,
   StyleSheet,
-  View
+  View,
+  ScrollView
 } from 'react-native';
 import {connect} from 'react-redux'
 import {logIn} from '../../services/authServices.js'
@@ -46,7 +47,9 @@ const styles = StyleSheet.create({
       fontSize:60,
       fontWeight:'bold',
       textAlign:'center',
-      color:'mediumseagreen'
+      color:'mediumseagreen',
+      marginBottom:"10%",
+      marginTop:"20%",
     }
 })
 
@@ -85,29 +88,33 @@ function Landing (props) {
   }
 
   return (
-    <SafeAreaView style={styles.main}>
-        <Text style={styles.title}>VIBE</Text>
-        <View marginBottom='10%' style={styles.container}>
-          <TextInput
-            placeholder='Email'
-            onChange={setEmail}/>
-          <TextInput
-            placeholder='Password'
-            secureTextEntry={true}
-            onChange={setPassword}/>
+    <SafeAreaView>
+      <ScrollView>
+        <View style={styles.main}>
+          <Text style={styles.title}>VIBE</Text>
+          <View marginBottom='10%' style={styles.container}>
+            <TextInput
+              placeholder='Email'
+              onChange={setEmail}/>
+            <TextInput
+              placeholder='Password'
+              secureTextEntry={true}
+              onChange={setPassword}/>
+          </View>
+          {notice != '' ? (<Text>{notice}</Text>):(null)}
+          <Button title='Login'
+            onPress={handleLogin}
+            backgroundColor={colors.secondary}
+            textColor={colors.secondaryTextColor}
+            />
+          <Text style={styles.or}> - OR -  </Text>
+          <Button 
+            title='Sign Up' 
+            onPress={() => props.navigation.navigate('SignUp')}
+            backgroundColor={colors.primary}
+            />
         </View>
-        {notice != '' ? (<Text>{notice}</Text>):(null)}
-        <Button title='Login'
-          onPress={handleLogin}
-          backgroundColor={colors.secondary}
-          textColor={colors.secondaryTextColor}
-          />
-        <Text style={styles.or}> - OR -  </Text>
-        <Button 
-          title='Sign Up' 
-          onPress={() => props.navigation.navigate('SignUp')}
-          backgroundColor={colors.primary}
-          />
+      </ScrollView>
     </SafeAreaView>
   );
 };

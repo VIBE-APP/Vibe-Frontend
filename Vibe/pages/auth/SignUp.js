@@ -4,7 +4,7 @@ import {
   SafeAreaView,
   Text,
   StyleSheet,
-  Image,
+  ScrollView,
   KeyboardAvoidingView,
   View
 } from 'react-native';
@@ -23,11 +23,10 @@ const styles = StyleSheet.create({
     alignItems:'center',
     marginHorizontal:'10%',
     flexDirection:'column',
-    // justifyContent:'space-evenly'
   },
   container:{
     width:'100%',
-    height:'50  %',
+    height:'50%',
     justifyContent:'space-around',
   },  
   logo:{
@@ -52,8 +51,15 @@ const styles = StyleSheet.create({
     fontSize:60,
     fontWeight:'bold',
     textAlign:'center',
-    color:'mediumseagreen'
-  }
+    color:'mediumseagreen',
+    marginBottom:"3%",
+    marginTop:"10%",
+  },
+  subTitle:{
+    fontSize:24,
+    fontWeight:'bold',
+    marginBottom:'5%',
+  },
 })
 
 function validateEmail(email) {
@@ -93,39 +99,41 @@ function SignUp (props) {
   let colors = theme.colors
 
   const textStyle = [styles.text]
+  const secondaryTextStyle = [styles.text]
   textStyle.push({color: colors.primary})
+  secondaryTextStyle.push({color: colors.secondary})
 
   return (
-    <SafeAreaView style={styles.main}>        
-        <Text style={styles.title}>VIBE</Text>
-        <Text style={textStyle}>User Registration</Text>
-        <KeyboardAvoidingView marginBottom='5%' 
-        style={styles.container} 
-        behavior='height'   
-        keyboardVerticalOffset = {Header.HEIGHT}>
-          <TextInput
-            placeholder='Name'
-            onChange={setName}/>
-          <TextInput
-            placeholder='Email'
-            onChange={setEmail}/>
-          <TextInput
-            placeholder='Password'
-            secureTextEntry={true}
-            onChange={setPassword}/>
-          <TextInput
-            placeholder='Confirm Password'
-            secureTextEntry={true}
-            onChange={setConfirmPassword}/>
-          {/* <View style={{ height: 60 }} /> */}
-
-        </KeyboardAvoidingView>
-        {notice != '' ? (<Text>{notice}</Text>):(null)}
-        <Button 
-          title='Sign Up' 
-          onPress={handleSignUp}
-          backgroundColor={colors.primary}
-          />
+    <SafeAreaView>
+      <ScrollView>
+        <View style={styles.main}> 
+          <Text style={styles.title}>VIBE</Text>
+          <Text style={secondaryTextStyle}>Sign Up</Text>
+          <View marginBottom='5%' 
+          style={styles.container}>
+            <TextInput
+              placeholder='Name'
+              onChange={setName}/>
+            <TextInput
+              placeholder='Email'
+              onChange={setEmail}/>
+            <TextInput
+              placeholder='Password'
+              secureTextEntry={true}
+              onChange={setPassword}/>
+            <TextInput
+              placeholder='Confirm Password'
+              secureTextEntry={true}
+              onChange={setConfirmPassword}/>
+          </View>
+          {notice != '' ? (<Text>{notice}</Text>):(null)}
+          <Button 
+            title='Sign Up' 
+            onPress={handleSignUp}
+            backgroundColor={colors.primary}
+            />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
