@@ -23,13 +23,13 @@ const styles = StyleSheet.create({
     alignItems:'center',
     marginHorizontal:'10%',
     flexDirection:'column',
-    justifyContent:'space-evenly'
+    // justifyContent:'space-evenly'
   },
   container:{
     width:'100%',
-    height:'40%',
+    height:'50  %',
     justifyContent:'space-around',
-  },
+  },  
   logo:{
     height:'40%',
     width:'100%',
@@ -61,7 +61,7 @@ function validateEmail(email) {
     return re.test(String(email).toLowerCase());
 }
 
-function SignUp (props) {
+function SignUp (props) { 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -117,6 +117,8 @@ function SignUp (props) {
             placeholder='Confirm Password'
             secureTextEntry={true}
             onChange={setConfirmPassword}/>
+          {/* <View style={{ height: 60 }} /> */}
+
         </KeyboardAvoidingView>
         {notice != '' ? (<Text>{notice}</Text>):(null)}
         <Button 
