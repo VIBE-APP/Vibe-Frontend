@@ -1,17 +1,21 @@
 import React, {useState} from 'react';
+
 import {
   SafeAreaView,
   Text,
   StyleSheet,
   Image,
+  KeyboardAvoidingView,
   View
 } from 'react-native';
 import {connect} from 'react-redux'
 import {setError} from '../../redux/actions/authActions'
 import { useTheme} from '@react-navigation/native';
+import { Header } from '@react-navigation/stack';
 import TextInput from '../../components/TextInput'
 import Button from '../../components/Button'
 import {signUp} from '../../services/authServices'
+
 
 const styles = StyleSheet.create({
   main:{
@@ -95,7 +99,10 @@ function SignUp (props) {
     <SafeAreaView style={styles.main}>        
         <Text style={styles.title}>VIBE</Text>
         <Text style={textStyle}>User Registration</Text>
-        <View marginBottom='5%' style={styles.container}>
+        <KeyboardAvoidingView marginBottom='5%' 
+        style={styles.container} 
+        behavior='height'   
+        keyboardVerticalOffset = {Header.HEIGHT}>
           <TextInput
             placeholder='Name'
             onChange={setName}/>
@@ -110,7 +117,7 @@ function SignUp (props) {
             placeholder='Confirm Password'
             secureTextEntry={true}
             onChange={setConfirmPassword}/>
-        </View>
+        </KeyboardAvoidingView>
         {notice != '' ? (<Text>{notice}</Text>):(null)}
         <Button 
           title='Sign Up' 
